@@ -74,3 +74,25 @@ footer { text-align:center; color:#a99caf; font-size:12px; font-weight:800; marg
   .answer-grid { gap:9px; } .answer { min-height:78px; font-size:14px; padding:10px; }
   .pin-box { flex-direction:column; } .pin-box span { font-size:30px; }
 }
+
+
+.saved-quizzes { margin-top:18px; text-align:left; }
+.saved-quiz { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 2px; border-bottom:1px solid #eee8f5; }
+.saved-quiz h3 { font-size:16px; }
+.saved-quiz p { margin:4px 0 0; color:var(--muted); font-size:12px; font-weight:800; }
+.saved-quiz-actions { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+.mini-btn,.remove-question { border:0; border-radius:9px; padding:8px 10px; background:#f1ebff; color:#715d94; font:800 12px "Nunito"; cursor:pointer; }
+.mini-btn.play-quiz { background:#e4f7ef; color:#43876f; }
+.mini-btn.delete-quiz,.remove-question { background:#fff0f3; color:#c66d89; }
+.empty-library { text-align:center; padding:22px 5px; }
+.question-card { margin:18px 0; padding:17px; border:1px solid #eee7f5; border-radius:17px; background:#fffafd; text-align:left; }
+.question-card-head { display:flex; justify-content:space-between; align-items:center; color:#896db4; }
+.question-card label { margin-top:12px; }
+.question-card textarea,.question-card input,.question-card select { width:100%; padding:11px; border:1.5px solid #eee8f5; border-radius:10px; font:700 14px "Nunito"; color:var(--ink); background:white; }
+.question-answer-fields { display:grid; grid-template-columns:1fr 1fr; gap:0 10px; }
+.question-card select { margin-top:4px; }
+@media(max-width:520px) {
+  .saved-quiz { align-items:flex-start; flex-direction:column; }
+  .saved-quiz-actions { justify-content:flex-start; }
+  .question-answer-fields { grid-template-columns:1fr; }
+}
