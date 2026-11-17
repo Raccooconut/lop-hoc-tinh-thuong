@@ -22,8 +22,30 @@
       <p class="muted">Một chút kiến thức, thật nhiều niềm vui ✨</p>
       <div class="home-actions">
         <button id="show-host" class="btn btn-primary">Tạo phòng chơi</button>
-        <button id="show-join" class="btn btn-secondary">Tham gia phòng</button>
+        <button id="show-join" class="btn btn-secondary">Tham gia phòng</button>\n        <button id="show-bank" class="btn btn-secondary">📚 Ngân hàng câu hỏi</button>
       </div>
+    </section>
+
+    <section id="question-bank" class="panel hidden">
+      <button class="back" id="bank-home">← Trang chủ</button>
+      <div class="mascot small">📚</div>
+      <h2>Ngân hàng câu hỏi</h2>
+      <p class="muted">Tạo bộ câu hỏi riêng, lưu lại và dùng cho những buổi chơi sau.</p>
+      <button id="new-quiz" class="btn btn-primary full">＋ Tạo bộ câu hỏi mới</button>\n      <div class="library-key-tools"><button id="copy-library-key" class="mini-btn">Sao chép mã thư viện</button><input id="import-library-key" placeholder="Dán mã thư viện từ thiết bị khác"><button id="use-library-key" class="mini-btn">Dùng mã này</button></div>
+      <div id="saved-quizzes" class="saved-quizzes"><p class="muted">Đang tải thư viện...</p></div>
+      <p id="bank-message" class="error"></p>
+    </section>
+
+    <section id="quiz-editor" class="panel hidden">
+      <button class="back" id="editor-back">← Ngân hàng câu hỏi</button>
+      <div class="mascot small">✏️</div>
+      <h2 id="editor-heading">Tạo bộ câu hỏi</h2>
+      <label for="quiz-title">Tên bộ câu hỏi</label>
+      <input id="quiz-title" maxlength="100" placeholder="Ví dụ: Ôn tập chương 1">
+      <div id="question-editor-list"></div>
+      <button id="add-question" class="btn btn-secondary full">＋ Thêm câu hỏi</button>
+      <p id="editor-message" class="error"></p>
+      <button id="save-quiz" class="btn btn-primary full">Lưu bộ câu hỏi</button>
     </section>
 
     <section id="host-setup" class="panel narrow hidden">
@@ -101,6 +123,6 @@
     <footer>Made with ♡ for a fun classroom</footer>
   </main>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js"></script>\n  <script src="question-bank.js"></script>
 </body>
 </html>
