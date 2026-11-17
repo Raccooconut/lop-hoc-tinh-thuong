@@ -177,7 +177,7 @@ io.on("connection", socket => {
     if (!room || socket.data.role !== "player" || room.state !== "playing" || room.revealed) return;
     if (!room.players.has(socket.id) || room.answers.has(socket.id)) return;
 
-    const q = QUESTIONS[room.questionIndex];
+    const q = room.questions[room.questionIndex];
     if (!Number.isInteger(answer) || answer < 0 || answer >= q.answers.length) return;
 
     const elapsed = Date.now() - room.questionStartedAt;
@@ -209,7 +209,7 @@ io.on("connection", socket => {
   function revealQuestion(pin, room) {
     if (room.revealed) return;
     room.revealed = true;
-    const q = QUESTIONS[room.questionIndex];
+    const q = room.questions[room.questionIndex];
     io.to(pin).emit("question-result", {
       correct: q.correct,
       correctText: q.answers[q.correct],
