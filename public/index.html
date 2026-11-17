@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzy Party</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sparkle s1">✦</div><div class="sparkle s2">✿</div><div class="sparkle s3">✧</div>
+  <main class="app">
+    <header class="brand">
+      <div class="brand-mark">★</div>
+      <div><h1>Quizzy Party</h1><p>Học vui hơn, chơi hết mình!</p></div>
+    </header>
+
+    <section id="home" class="panel home-panel">
+      <div class="mascot">🐻‍❄️</div>
+      <h2>Chào mừng đến với Quizzy Party!</h2>
+      <p class="muted">Một chút kiến thức, thật nhiều niềm vui ✨</p>
+      <div class="home-actions">
+        <button id="show-host" class="btn btn-primary">Tạo phòng chơi</button>
+        <button id="show-join" class="btn btn-secondary">Tham gia phòng</button>
+      </div>
+    </section>
+
+    <section id="host-setup" class="panel narrow hidden">
+      <button class="back" data-back>← Trang chủ</button>
+      <div class="mascot small">🎀</div>
+      <h2>Tạo phòng mới</h2>
+      <p class="muted">Bạn sẽ là quản trò của phòng này.</p>
+      <button id="create-room" class="btn btn-primary full">Tạo mã phòng</button>
+    </section>
+
+    <section id="join-setup" class="panel narrow hidden">
+      <button class="back" data-back>← Trang chủ</button>
+      <div class="mascot small">🌷</div>
+      <h2>Tham gia cuộc vui</h2>
+      <label for="pin-input">Mã PIN phòng</label>
+      <input id="pin-input" maxlength="6" inputmode="numeric" placeholder="Ví dụ: 123456">
+      <label for="name-input">Nickname của bạn</label>
+      <input id="name-input" maxlength="18" placeholder="Ví dụ: Gấu Mèo">
+      <p id="join-error" class="error"></p>
+      <button id="join-room" class="btn btn-primary full">Vào phòng chơi</button>
+    </section>
+
+    <section id="host-lobby" class="panel hidden">
+      <div class="pill">PHÒNG CHỜ</div>
+      <h2>Chờ mọi người tham gia nhé!</h2>
+      <p class="muted">Chia sẻ mã PIN này với cả lớp</p>
+      <div class="pin-box"><span id="room-pin">------</span><button id="copy-pin" class="copy-btn">Sao chép</button></div>
+      <p class="muted">Người chơi truy cập cùng địa chỉ website và nhập mã PIN.</p>
+      <div class="section-head"><h3>Người chơi</h3><span id="player-count" class="count">0 người</span></div>
+      <div id="lobby-players" class="player-chips"><p class="muted">Đang chờ người chơi...</p></div>
+      <button id="start-game" class="btn btn-primary full" disabled>Bắt đầu trò chơi</button>
+      <p id="host-error" class="error"></p>
+    </section>
+
+    <section id="player-lobby" class="panel narrow hidden">
+      <div class="mascot small">🎉</div>
+      <div class="pill">ĐÃ VÀO PHÒNG</div>
+      <h2>Xin chào, <span id="player-name"></span>!</h2>
+      <p class="muted">Bạn đã vào phòng <b id="player-pin"></b>.</p>
+      <div class="waiting">☕ Đang chờ quản trò bắt đầu...</div>
+    </section>
+
+    <section id="host-game" class="panel game-panel hidden">
+      <div class="game-top"><span class="pill">QUẢN TRÒ</span><span id="host-progress" class="muted"></span></div>
+      <div class="timer" id="host-timer">20</div>
+      <h2 id="host-question">Câu hỏi sẽ xuất hiện ở đây</h2>
+      <div id="host-options" class="answer-grid"></div>
+      <p id="host-answer-count" class="muted center">0 người đã trả lời</p>
+      <div id="host-result" class="result-box hidden"></div>
+      <div class="host-controls">
+        <button id="reveal-answer" class="btn btn-secondary">Hiện đáp án</button>
+        <button id="next-question" class="btn btn-primary hidden">Câu tiếp theo →</button>
+      </div>
+      <div id="host-leaderboard" class="leaderboard hidden"></div>
+    </section>
+
+    <section id="player-game" class="panel game-panel hidden">
+      <div class="game-top"><span class="pill">NGƯỜI CHƠI</span><span id="player-progress" class="muted"></span></div>
+      <h2 id="player-question">Câu hỏi</h2>
+      <div id="player-options" class="answer-grid player-options"></div>
+      <p id="player-feedback" class="feedback"></p>
+      <div id="player-result" class="result-box hidden"></div>
+      <div id="player-leaderboard" class="leaderboard hidden"></div>
+    </section>
+
+    <section id="finished" class="panel narrow hidden">
+      <div class="mascot">🏆</div>
+      <div class="pill">HOÀN THÀNH</div>
+      <h2>Trò chơi kết thúc!</h2>
+      <p class="muted">Cảm ơn mọi người đã tham gia Quizzy Party.</p>
+      <div id="final-leaderboard" class="leaderboard"></div>
+      <button class="btn btn-primary full" onclick="location.reload()">Về trang chủ</button>
+    </section>
+
+    <footer>Made with ♡ for a fun classroom</footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
