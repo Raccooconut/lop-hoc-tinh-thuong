@@ -78,6 +78,16 @@
     drawQuestions(); show("quiz-editor");
   }
   $("show-bank").addEventListener("click",()=>{show("question-bank");loadLibrary();});
+  $("copy-library-key").addEventListener("click",async()=>{
+    try { await navigator.clipboard.writeText(ownerKey); $("copy-library-key").textContent="Đã sao chép mã"; }
+    catch { $("bank-message").textContent="Không thể sao chép tự động. Hãy thử lại trên trình duyệt."; }
+  });
+  $("use-library-key").addEventListener("click",async()=>{
+    const candidate=$("import-library-key").value.trim();
+    if(!/^[a-f0-9]{64}$/i.test(candidate)){ $("bank-message").textContent="Mã thư viện phải gồm 64 ký tự."; return; }
+    ownerKey=candidate; localStorage.setItem("quizzy-library-key",ownerKey);
+    $("import-library-key").value=""; await loadLibrary();
+  });
   $("bank-home").addEventListener("click",()=>show("home"));
   $("new-quiz").addEventListener("click",newQuiz);
   $("editor-back").addEventListener("click",()=>{show("question-bank");loadLibrary();});
