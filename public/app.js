@@ -77,6 +77,7 @@ socket.on("room-created", ({pin}) => {
 socket.on("join-error", message => $("join-error").textContent = message);
 socket.on("host-error", message => $("host-error").textContent = message);
 socket.on("joined-room", ({pin,name}) => {
+  currentRole = "player";
   $("player-name").textContent = name;
   $("player-pin").textContent = pin;
   showScreen("player-lobby");
