@@ -96,3 +96,6 @@ footer { text-align:center; color:#a99caf; font-size:12px; font-weight:800; marg
   .saved-quiz-actions { justify-content:flex-start; }
   .question-answer-fields { grid-template-columns:1fr; }
 }
+
+.library-key-tools { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:14px 0; padding:12px; border-radius:14px; background:#faf7ff; }
+.library-key-tools input { flex:1; min-width:180px; padding:9px 10px; font-size:12px; }
