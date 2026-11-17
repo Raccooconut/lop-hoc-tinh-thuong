@@ -1,6 +1,6 @@
 const socket = io();
 const $ = id => document.getElementById(id);
-const screens = ["home","host-setup","join-setup","host-lobby","player-lobby","host-game","player-game","finished"];
+const screens = ["home","question-bank","quiz-editor","host-setup","join-setup","host-lobby","player-lobby","host-game","player-game","finished"];
 let currentRole = null;
 let timerInterval = null;
 let currentSeconds = 0;
@@ -53,7 +53,7 @@ document.querySelectorAll("[data-back]").forEach(b => b.onclick = () => showScre
 $("create-room").onclick = () => {
   currentRole = "host";
   $("create-room").disabled = true;
-  socket.emit("host-create");
+  socket.emit("host-create", { setId: window.selectedQuizSetId || null });
 };
 $("join-room").onclick = () => {
   $("join-error").textContent = "";
