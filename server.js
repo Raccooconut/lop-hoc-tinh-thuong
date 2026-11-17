@@ -88,10 +88,19 @@ function sendLeaderboard(pin, room) {
 }
 
 io.on("connection", socket => {
-  socket.on("host-create", () => {
+  socket.on("host-create", async ({ setId } = {}) => {
+    let selectedQuestions = QUESTIONS;
+    if (setId) {
+      try {
+        const set = await loadQuestionSet(setId);
+        if (!set || !validQuestions(set.questions)) { socket.emit("host-error", "Không tìm thấy bộ câu hỏi."); return; }
+        selectedQuestions = set.questions;
+      } catch (error) { socket.emit("host-error", error.status === 503 ? error.message : "Không thể tải bộ câu hỏi."); return; }
+    }
     const pin = makePin();
     const room = {
       hostId: socket.id,
+      questions: selectedQuestions,
       players: new Map(),
       state: "lobby",
       questionIndex: -1,
